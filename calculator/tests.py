@@ -44,6 +44,18 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.calculator.evaluate("+ 3")
 
+    def test_invalid_input(self):
+        with self.assertRaises(ValueError):
+            self.calculator.evaluate("a + b")
+
+    def test_division_by_zero(self):
+        with self.assertRaises(ZeroDivisionError):
+            self.calculator.evaluate("10 / 0")
+
+    def test_whitespace_variation(self):
+        result = self.calculator.evaluate("  10   +   5  ")
+        self.assertEqual(result, 15)
+
 
 if __name__ == "__main__":
     unittest.main()
